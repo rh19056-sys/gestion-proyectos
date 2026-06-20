@@ -1,4 +1,4 @@
--- 1. Proyectos cuyo presupuesto es superior al promedio general de todos los proyectos
+ -- 1. Proyectos cuyo presupuesto es superior al promedio general de todos los proyectos
 SELECT id_proyecto, nombre_proyecto, presupuesto
 FROM proyecto
 WHERE presupuesto > (SELECT AVG(presupuesto) FROM proyecto);
@@ -18,14 +18,14 @@ FROM proyecto
 WHERE id_proyecto IN (
     SELECT DISTINCT id_proyecto 
     FROM tarea 
-    WHERE estado = 'EN PAUSA' OR estado = 'POR INICIAR'
+    WHERE estado_tarea = 'EN PAUSA' OR estado_tarea = 'POR INICIAR'
 );
 
 -- 4. Obtener el nombre del proyecto y su porcentaje de tareas completadas (Subconsulta correlacionada en el SELECT)
 SELECT 
     p.nombre_proyecto,
     (SELECT COUNT(*) FROM tarea t WHERE t.id_proyecto = p.id_proyecto) AS total_tareas,
-    (SELECT COUNT(*) FROM tarea t WHERE t.id_proyecto = p.id_proyecto AND t.estado = 'FINALIZADO') AS completadas
+    (SELECT COUNT(*) FROM tarea t WHERE t.id_proyecto = p.id_proyecto AND t.estado_tarea = 'FINALIZADO') AS completadas
 FROM proyecto p;
 
 -- 5. Listar los empleados que ganan o tienen un rango asignado superior al promedio de su mismo cargo (Correlacionada)

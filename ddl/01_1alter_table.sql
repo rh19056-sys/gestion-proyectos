@@ -60,9 +60,16 @@ CHECK (
 -- =====================================================
 
 ALTER TABLE telefono
-ADD CONSTRAINT chk_telefono_formato
-CHECK (REGEXP_LIKE(telefono, '^[0-9+\- ]{7,20}$'));
+DROP CONSTRAINT chk_telefono_formato;
 
+ALTER TABLE telefono
+ADD CONSTRAINT chk_telefono_formato
+CHECK (
+    REGEXP_LIKE(
+        telefono,
+        '^[[:digit:][:space:]+-]{7,20}$'
+    )
+);
 -- =====================================================
 -- TAREA
 -- =====================================================

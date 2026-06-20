@@ -53,7 +53,7 @@ CREATE TABLE proyecto (
     
     fecha_fin DATE,
 
-    presupuesto NUMBER(6,2)
+    presupuesto NUMBER(10,2)
         CONSTRAINT chk_presupuesto CHECK (presupuesto >= 0),
 
     estado_proyecto VARCHAR2(20)
@@ -90,8 +90,30 @@ CREATE TABLE empleado (
         CHECK (disponibilidad IN ('DISPONIBLE','OCUPADO','EN_VACACIONES')),
     
     rol VARCHAR2(30)
-        CONSTRAINT chk_empleado_rol 
-        CHECK (rol IN ('DESARROLLADOR','LIDER','ANALISTA','TESTER','GERENTE'))
+    CONSTRAINT chk_empleado_rol
+    CHECK (rol IN (
+        'DESARROLLADOR',
+        'ANALISTA',
+        'GERENTE',
+        'TESTER',
+        'DISEÑADOR',
+        'ADMINISTRADOR',
+        'CONSTRUCTOR',
+        'CONSULTOR',
+        'PROMOTOR',
+        'ARQUITECTO',
+        'INGENIERO_CIVIL',
+        'DIRECTOR_OBRA',
+        'DIRECTOR_EJECUCION',
+        'COORDINADOR_SEGURIDAD',
+        'CONTRATISTA',
+        'CAPATAZ',
+        'ALBAÑIL',
+        'ELECTRICISTA',
+        'PLOMERO',
+        'CARPINTERO',
+        'SOLDADOR'
+    ))
 );
 
 -- =====================================================
